@@ -30,4 +30,8 @@ class Personagem {
     print('Nome oponente ${oponente._nome}');
     oponente.defender(dano);
   }
+
+  void exibirStatus() {
+    print('Nome: $_nome - Vida: $_vida ');
+  }
 }

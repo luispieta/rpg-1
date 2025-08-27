@@ -20,12 +20,45 @@ class Duelo {
   Personagem? get oponente => _oponente;
 
   void iniciar() {
+    _definirPosicaoInicial();
+    while (_jogador1.estaVivo() && _jogador2.estaVivo()) {
+      if (_jogadorVez != null && _oponente != null) {
+        final dano = _dado.jogarDado();
+        print('Jogador vez: ${_jogadorVez!.nome}, dano: $dano');
+        _jogadorVez!.atacar(_oponente!, _dado.jogarDado());
+        _jogador1.exibirStatus();
+        _jogador2.exibirStatus();
+        _trocarPosicoes();
+      }
+    }
+    _mostrarVencedor();
+  }
+
+  void _definirPosicaoInicial() {
     if (_jogador1.velocidade > _jogador2.velocidade) {
       _jogadorVez = _jogador1;
       _oponente = _jogador2;
     } else {
       _jogadorVez = _jogador2;
       _oponente = _jogador1;
+    }
+  }
+
+  void _trocarPosicoes() {
+    if (_jogadorVez?.nome == _jogador1.nome) {
+      _jogadorVez = _jogador2;
+      _oponente = _jogador1;
+    } else {
+      _jogadorVez = _jogador1;
+      _oponente = _jogador2;
+    }
+  }
+
+  void _mostrarVencedor() {
+    if (_jogador1.estaVivo()) {
+      print('O jogador ${_jogador1.nome}, venceu!!');
+    } else {
+      print('O jogador ${_jogador2.nome}, venceu!!');
     }
   }
 }
