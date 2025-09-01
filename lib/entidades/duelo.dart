@@ -5,8 +5,8 @@ class Duelo {
   final Personagem _jogador1;
   final Personagem _jogador2;
   final Dado _dado;
-  Personagem? _jogadorVez;
-  Personagem? _oponente;
+  Personagem? _atacante;
+  Personagem? _defensor;
 
   Duelo({
     required Personagem jogador1,
@@ -16,49 +16,47 @@ class Duelo {
        _jogador2 = jogador2,
        _dado = dado;
 
-  Personagem? get jogadorVez => _jogadorVez;
-  Personagem? get oponente => _oponente;
+  Personagem? get jogadorVez => _atacante;
+  Personagem? get oponente => _defensor;
 
   void iniciar() {
     _definirPosicaoInicial();
-    while (_jogador1.estaVivo() && _jogador2.estaVivo()) {
-      if (_jogadorVez != null && _oponente != null) {
+    if (_atacante != null && _defensor != null) {
+      while (_jogador1.estaVivo() && _jogador2.estaVivo()) {
         final dano = _dado.jogarDado();
-        print('Jogador vez: ${_jogadorVez!.nome}, dano: $dano');
-        _jogadorVez!.atacar(_oponente!, _dado.jogarDado());
+        print('Jogador vez: ${_atacante!.nome}, dano: $dano');
+        _atacante!.atacar(_defensor!, dano);
         _jogador1.exibirStatus();
         _jogador2.exibirStatus();
-        _trocarPosicoes();
+        if (_defensor!.estaVivo()) {
+          _trocarPosicoes();
+        }
       }
+      _mostrarVencedor();
     }
-    _mostrarVencedor();
+  }
+
+  void _setTurno({required Personagem atacante, required Personagem defensor}) {
+    _atacante = atacante;
+    _defensor = defensor;
   }
 
   void _definirPosicaoInicial() {
-    if (_jogador1.velocidade > _jogador2.velocidade) {
-      _jogadorVez = _jogador1;
-      _oponente = _jogador2;
+    if (_jogador1.velocidade >= _jogador2.velocidade) {
+      _setTurno(atacante: _jogador1, defensor: _jogador2);
     } else {
-      _jogadorVez = _jogador2;
-      _oponente = _jogador1;
+      _setTurno(atacante: _jogador2, defensor: _jogador1);
     }
   }
 
   void _trocarPosicoes() {
-    if (_jogadorVez?.nome == _jogador1.nome) {
-      _jogadorVez = _jogador2;
-      _oponente = _jogador1;
-    } else {
-      _jogadorVez = _jogador1;
-      _oponente = _jogador2;
-    }
+    final atual = _atacante;
+    _atacante = _defensor;
+    _defensor = atual;
   }
 
   void _mostrarVencedor() {
-    if (_jogador1.estaVivo()) {
-      print('O jogador ${_jogador1.nome}, venceu!!');
-    } else {
-      print('O jogador ${_jogador2.nome}, venceu!!');
-    }
+    final vencedor = _jogador1.estaVivo() ? _jogador1 : _jogador2;
+    print('O jogador ${vencedor.nome}, venceu!!');
   }
 }
