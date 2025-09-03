@@ -1,0 +1,19 @@
+import 'package:rpg_v2/entidades/personagem.dart';
+
+class Heroi extends Personagem{
+  final String _reino;
+  final String _missao;
+
+  String get missao => _missao;
+  String get reino => _reino;
+  
+  Heroi({
+    required super.nome,
+    required super.vida,
+    required super.escudo,
+    required super.velocidade,
+    required String reino,
+    required String missao
+  }): _reino = reino, _missao = missao;
+
+}

@@ -20,15 +20,18 @@ class Duelo {
   Personagem? get oponente => _oponente;
 
   void iniciar() {
+    int turno = 0;
     _definirPosicaoInicial();
     while (_jogador1.estaVivo() && _jogador2.estaVivo()) {
       if (_jogadorVez != null && _oponente != null) {
         final dano = _dado.jogarDado();
+        print("==== TURNO $turno ====");
         print('Jogador vez: ${_jogadorVez!.nome}, dano: $dano');
         _jogadorVez!.atacar(_oponente!, _dado.jogarDado());
         _jogador1.exibirStatus();
         _jogador2.exibirStatus();
         _trocarPosicoes();
+        turno++;
       }
     }
     _mostrarVencedor();

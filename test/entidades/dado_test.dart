@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:rpg_v2/entidades/dado.dart';
 import 'package:test/test.dart';
 

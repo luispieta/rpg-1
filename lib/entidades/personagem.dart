@@ -4,7 +4,15 @@ class Personagem {
   final int _escudo;
   final int _velocidade;
 
-  Personagem(this._nome, this._vida, this._escudo, this._velocidade);
+  Personagem({
+    required nome, 
+    required vida,
+    required escudo,
+    required velocidade
+  }): _nome = nome, 
+      _vida = vida,
+      _escudo = escudo,
+      _velocidade = velocidade; 
 
   String get nome => _nome;
   int get vida => _vida;
