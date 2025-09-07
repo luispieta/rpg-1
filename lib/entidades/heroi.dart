@@ -12,6 +12,8 @@ class Heroi extends Personagem{
     required super.vida,
     required super.escudo,
     required super.velocidade,
+    required super.raca,
+    required super.arquetipo,
     required String reino,
     required String missao
   }): _reino = reino, _missao = missao;

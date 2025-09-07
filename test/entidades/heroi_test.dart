@@ -11,7 +11,9 @@ void main() {
         nome: "Cabeça de gelo",
         vida: 19,
         escudo: 23,
-        velocidade: 2
+        velocidade: 2, 
+        raca: null,
+        arquetipo: null
       ); 
       expect(heroi, isA<Heroi>());
       expect(heroi, isA<Personagem>());
