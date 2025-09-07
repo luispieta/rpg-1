@@ -1,23 +1,34 @@
+import 'package:rpg_v2/entidades/arquetipo.dart';
+import 'package:rpg_v2/entidades/raca.dart';
+
 class Personagem {
   final String _nome;
   int _vida;
   final int _escudo;
   final int _velocidade;
+  final Raca _raca;
+  final Arquetipo _arquetipo;
 
   Personagem({
-    required nome, 
-    required vida,
-    required escudo,
-    required velocidade
+    required String nome, 
+    required int vida,
+    required int escudo,
+    required int velocidade,
+    required Raca raca,
+    required Arquetipo arquetipo
   }): _nome = nome, 
-      _vida = vida,
-      _escudo = escudo,
-      _velocidade = velocidade; 
+      _vida = vida + raca.bonusVida + arquetipo.bonusVida,
+      _escudo = escudo + raca.bonusEscudo + arquetipo.bonusEscudo,
+      _velocidade = velocidade + arquetipo.bonusVelocidade,
+      _raca = raca,
+      _arquetipo = arquetipo; 
 
   String get nome => _nome;
   int get vida => _vida;
   int get escudo => _escudo;
   int get velocidade => _velocidade;
+  Raca get raca => _raca;
+  Arquetipo get arquetipo => _arquetipo;
 
   void defender(int dano) {
     var danoReal = dano - _escudo;

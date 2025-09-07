@@ -4,10 +4,9 @@ abstract class Raca {
   final int _bonusEscudo;
 
   Raca({
-    required bonusVida, 
-    required bonusAtaque,
-    required bonusEscudo,
-    required bonusVelocidade
+    required int bonusVida, 
+    required int bonusAtaque,
+    required int bonusEscudo,
   }): _bonusVida = bonusVida, 
       _bonusAtaque = bonusAtaque,
       _bonusEscudo = bonusEscudo;

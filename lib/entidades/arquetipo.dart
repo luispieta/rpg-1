@@ -5,10 +5,10 @@ abstract class Arquetipo {
   final int _bonusVelocidade;
 
   Arquetipo({
-    required bonusVida, 
-    required bonusAtaque,
-    required bonusEscudo,
-    required bonusVelocidade
+    required int bonusVida, 
+    required int bonusAtaque,
+    required int bonusEscudo,
+    required int bonusVelocidade
   }): _bonusVida = bonusVida, 
       _bonusAtaque = bonusAtaque,
       _bonusEscudo = bonusEscudo,
