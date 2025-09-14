@@ -13,6 +13,8 @@ class Monstro extends Personagem{
     required super.vida,
     required super.escudo,
     required super.velocidade,
+    required super.raca, 
+    required super.arquetipo,
     required String origem,
     required String tipoCriatura
   }): _origem = origem, _tipoCriatura = tipoCriatura;

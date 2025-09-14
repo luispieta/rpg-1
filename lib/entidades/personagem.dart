@@ -1,7 +1,7 @@
 import 'package:rpg_v2/entidades/arquetipo.dart';
 import 'package:rpg_v2/entidades/raca.dart';
 
-class Personagem {
+abstract class Personagem {
   final String _nome;
   int _vida;
   final int _escudo;
@@ -47,7 +47,7 @@ class Personagem {
   void atacar(Personagem oponente, int dano) {
     print('Nome do atacante $_nome');
     print('Nome oponente ${oponente._nome}');
-    oponente.defender(dano);
+    oponente.defender(dano + raca.bonusAtaque);
   }
 
   void exibirStatus() {

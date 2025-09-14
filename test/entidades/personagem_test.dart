@@ -9,7 +9,7 @@ void main() {
     });
 
     test('Descudo: eve velocidade: inicializar com os valores corretos.', () {
-      final personagem = Personagem(nome: 'Maria', vida: 15, escudo: 12, velocidade: 33);
+      final personagem = Personagem(nome: 'Maria', vida: 15, escudo: 12, velocidade: 33z);
       expect(personagem.nome, 'Maria');
       expect(personagem.vida, 15);
       expect(personagem.escudo, 12);
